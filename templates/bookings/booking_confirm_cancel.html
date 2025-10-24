@@ -1,0 +1,11 @@
+    {% extends "base.html" %}
+    {% block title %}Cancelar reserva — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Cancelar reserva</h2>
+    <p>¿Seguro que deseas cancelar la reserva #{{ booking.id }} del {{ booking.scheduled_at|date:"Y-m-d H:i" }}?</p>
+    <form method="post">
+    {% csrf_token %}
+    <button class="btn" type="submit">Sí, cancelar</button>
+    <a class="btn" href="{% url 'bookings:detail' booking.pk %}">Volver</a>
+    </form>
+    {% endblock %}

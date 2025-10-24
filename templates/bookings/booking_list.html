@@ -1,0 +1,28 @@
+    {% extends "base.html" %}
+    {% block title %}Mis reservas — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Mis reservas</h2>
+    <p><a class="btn" href="{% url 'bookings:create' %}">Nueva reserva</a></p>
+    {% if bookings %}
+    <table>
+    <thead><tr><th>Fecha/Hora</th><th>Vehículo</th><th>Servicio</th><th>Estado</th><th></th></tr></thead>
+    <tbody>
+        {% for b in bookings %}
+        <tr>
+        <td>{{ b.scheduled_at|date:"Y-m-d H:i" }}</td>
+        <td>{{ b.vehicle.plate }}</td>
+        <td>{{ b.service.name }}</td>
+        <td>{{ b.status }}</td>
+        <td>
+            <a href="{% url 'bookings:detail' b.pk %}">Ver</a> |
+            <a href="{% url 'bookings:edit' b.pk %}">Editar</a> |
+            <a href="{% url 'bookings:cancel' b.pk %}">Cancelar</a>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+    <p>No tienes reservas aún.</p>
+    {% endif %}
+    {% endblock %}

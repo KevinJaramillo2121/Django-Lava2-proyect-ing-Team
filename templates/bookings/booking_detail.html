@@ -1,0 +1,17 @@
+    {% extends "base.html" %}
+    {% block title %}Reserva #{{ booking.id }} — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Reserva #{{ booking.id }}</h2>
+    <ul>
+    <li><strong>Fecha/Hora:</strong> {{ booking.scheduled_at|date:"Y-m-d H:i" }}</li>
+    <li><strong>Vehículo:</strong> {{ booking.vehicle.plate }}</li>
+    <li><strong>Servicio:</strong> {{ booking.service.name }} ({{ booking.service.duration_minutes }} min)</li>
+    <li><strong>Estado:</strong> {{ booking.status }}</li>
+    </ul>
+    {% if booking.notes %}<p><strong>Notas:</strong> {{ booking.notes }}</p>{% endif %}
+    <p>
+    <a class="btn" href="{% url 'bookings:edit' booking.pk %}">Editar</a>
+    <a class="btn" href="{% url 'bookings:cancel' booking.pk %}">Cancelar</a>
+    <a class="btn" href="{% url 'bookings:list' %}">Volver</a>
+    </p>
+    {% endblock %}
