@@ -1,0 +1,18 @@
+    {% extends "base.html" %}
+    {% block title %}{{ vehicle.plate }} — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Vehículo: {{ vehicle.plate }}</h2>
+    <ul>
+    <li><strong>Marca:</strong> {{ vehicle.make }}</li>
+    <li><strong>Modelo:</strong> {{ vehicle.model }}</li>
+    <li><strong>Año:</strong> {{ vehicle.year }}</li>
+    <li><strong>Color:</strong> {{ vehicle.color|default:"—" }}</li>
+    <li><strong>Activo:</strong> {{ vehicle.is_active|yesno:"Sí,No" }}</li>
+    </ul>
+
+    <p>
+    <a class="btn" href="{% url 'vehicles:edit' vehicle.pk %}">Editar</a>
+    <a class="btn" href="{% url 'vehicles:delete' vehicle.pk %}">Eliminar</a>
+    <a class="btn" href="{% url 'vehicles:list' %}">Volver</a>
+    </p>
+    {% endblock %}

@@ -1,0 +1,42 @@
+    {% extends "base.html" %}
+    {% block title %}Mis vehículos — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Mis vehículos</h2>
+
+    <p><a class="btn" href="{% url 'vehicles:create' %}">Añadir vehículo</a></p>
+
+    {% if vehicles %}
+    <table>
+        <thead>
+        <tr>
+            <th>Placa</th><th>Marca</th><th>Modelo</th><th>Año</th><th>Color</th><th>Activo</th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for v in vehicles %}
+        <tr>
+            <td><a href="{% url 'vehicles:detail' v.pk %}">{{ v.plate }}</a></td>
+            <td>{{ v.make }}</td>
+            <td>{{ v.model }}</td>
+            <td>{{ v.year }}</td>
+            <td>{{ v.color|default:"—" }}</td>
+            <td>{{ v.is_active|yesno:"Sí,No" }}</td>
+            <td>
+            <a href="{% url 'vehicles:edit' v.pk %}">Editar</a> |
+            <a href="{% url 'vehicles:delete' v.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+        <p>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</p>
+        {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Anterior</a>{% endif %}
+        {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Siguiente</a>{% endif %}
+    {% endif %}
+    {% else %}
+    <p>No tienes vehículos aún.</p>
+    {% endif %}
+
+    {% endblock %}

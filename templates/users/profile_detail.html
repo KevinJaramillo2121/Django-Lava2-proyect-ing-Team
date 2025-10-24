@@ -1,0 +1,20 @@
+    {% extends "base.html" %}
+    {% block title %}Mi perfil — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Mi perfil</h2>
+
+    <p><strong>Email:</strong> {{ request.user.email }}</p>
+    <p><strong>Nombre:</strong> {{ profile.full_name|default:"—" }}</p>
+    <p><strong>Teléfono:</strong> {{ profile.phone|default:"—" }}</p>
+    <p><strong>Zona horaria:</strong> {{ profile.timezone }}</p>
+    <p><strong>Preferencias:</strong>
+    {% if profile.wants_email %} Email {% endif %}
+    {% if profile.wants_sms %} SMS {% endif %}
+    {% if profile.wants_push %} Push {% endif %}
+    </p>
+    {% if profile.avatar %}
+    <p><img src="{{ profile.avatar.url }}" alt="Avatar" style="max-width:120px;border-radius:12px"></p>
+    {% endif %}
+
+    <p><a class="btn" href="{% url 'users:profile_edit' %}">Editar perfil</a></p>
+    {% endblock %}

@@ -1,0 +1,15 @@
+    {% extends "base.html" %}
+    {% block title %}{{ service.name }} — LAVA2{% endblock %}
+    {% block content %}
+    <h2>{{ service.name }}</h2>
+    <p><strong>Precio:</strong> ${{ service.price }}</p>
+    <p><strong>Duración:</strong> {{ service.duration_minutes }} min</p>
+    {% if service.description %}
+    <p style="margin-top:.75rem">{{ service.description }}</p>
+    {% endif %}
+
+    <p style="margin-top:1rem">
+    <a class="btn" href="{% url 'services:public_list' %}">Ver todos los servicios</a>
+    </p>
+    {% endblock %}
+

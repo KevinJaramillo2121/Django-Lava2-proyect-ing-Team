@@ -1,0 +1,12 @@
+    {% extends "base.html" %}
+    {% block title %}Eliminar vehículo — LAVA2{% endblock %}
+    {% block content %}
+    <h2>Eliminar vehículo</h2>
+    <p>¿Seguro que deseas eliminar <strong>{{ object.plate }}</strong>?</p>
+
+    <form method="post">
+    {% csrf_token %}
+    <button class="btn" type="submit">Sí, eliminar</button>
+    <a class="btn" href="{% url 'vehicles:detail' object.pk %}">No, volver</a>
+    </form>
+    {% endblock %}

@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv
+.venv/
+venv/
+env/
+
+# IDEs / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Django
+*.log
+staticfiles/
+media/
+# Si usas collectstatic local, ignora /staticfiles
+
+# Env & secretos
+.env
+.env.*
+!.env.example
+
+# Coverage / tests
+.coverage
+htmlcov/
+.pytest_cache/
+.cache/
+
+# Migrations (opcional dejar trackeadas: RECOMENDADO sí rastrear)
+# Si NO quieres rastrear auto-migraciones generadas al inicio, comenta la siguiente línea:
+# */migrations/*.py
+# Y deja solo __init__.py
+# */migrations/__pycache__/
+
+# Docker (más adelante)
+*.pid

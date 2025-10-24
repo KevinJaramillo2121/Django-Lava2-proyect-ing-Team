@@ -1,0 +1,8 @@
+Django==5.*
+djangorestframework
+django-filter
+django-cors-headers
+python-decouple
+psycopg[binary]
+argon2-cffi
+drf-spectacular
